@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173359">
+  <title>استمارة بيانات الموظف - شركة ويلا</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --wella-blue: #173359;
+      --wella-blue-hover: #0f2440;
+      --wella-bg: #fbf8f2;
+      --wella-card-bg: #fff;
+      --wella-text-dark: #2b2b2b;
+      --wella-border: #e2ded7;
+    }
+    body {
+      background: var(--wella-bg);
+      color: var(--wella-text-dark);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-bottom: 48px;
+    }
+    .wella-header {
+      background: #fff;
+      border-bottom: 1px solid var(--wella-border);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,.03);
+    }
+    .wella-title-text h2 {
+      color: var(--wella-blue);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: .5px;
+    }
+    .wella-title-text h3 {
+      color: #111;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 4px 0 0;
+    }
+    .wella-logo-img { max-height: 75px; width: auto; object-fit: contain; }
+    .card {
+      border: 1px solid var(--wella-border);
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(23,51,89,.05);
+      background: var(--wella-card-bg);
+      margin-top: 25px;
+    }
+    .card-header {
+      background: var(--wella-blue);
+      color: white;
+      border-radius: 11px 11px 0 0 !important;
+      padding: 18px 25px;
+      border: 0;
+    }
+    .form-label { font-weight: 600; color: #333; margin-bottom: 6px; font-size: .93rem; }
+    .form-control {
+      border-color: #d1cbc1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      min-height: 46px;
+    }
+    .form-control:focus {
+      border-color: var(--wella-blue);
+      box-shadow: 0 0 0 .25rem rgba(23,51,89,.15);
+    }
+    .btn-custom {
+      background: var(--wella-blue);
+      color: #fff;
+      font-weight: 700;
+      padding: 14px 35px;
+      border: 0;
+      border-radius: 8px;
+      transition: all .2s ease;
+    }
+    .btn-custom:hover { background: var(--wella-blue-hover); color: #fff; box-shadow: 0 6px 16px rgba(23,51,89,.2); }
+    .btn-custom:disabled { opacity: .7; }
+    .form-intro {
+      background: #f5f1e8;
+      border: 1px solid var(--wella-border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .status-box { min-height: 24px; }
+    @media (max-width: 575.98px) {
+      .wella-header .container { gap: 12px; }
+      .wella-title-text h2 { font-size: .95rem; }
+      .wella-title-text h3 { font-size: .9rem; }
+      .wella-logo-img { max-height: 54px; }
+      .card-body { padding: 1.15rem !important; }
+      .btn-custom { width: 100%; padding: 13px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wella-header">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="wella-title-text text-start">
+        <h2>WELLA Company for General Trading</h2>
+        <h3>شركة ويلا للتجارة العامة</h3>
+      </div>
+      <img src="imgs/logo.jpeg" alt="Wella Logo" class="wella-logo-img" onerror="this.style.display='none'">
+    </div>
+  </header>
+
+  <main class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <section class="card">
+          <div class="card-header d-flex justify-content-between align-items-center gap-2 flex-wrap">
+            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-user-plus me-2"></i> استمارة بيانات موظف جديد</h5>
+            <span class="badge bg-white text-dark px-3 py-2 fw-semibold">شركة ويلا</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="form-intro mb-4">
+              <div class="fw-bold" style="color:var(--wella-blue)">يرجى إدخال المعلومات بدقة</div>
+              <div class="small text-muted">سيتم إرسال البيانات إلى الإدارة لاستكمال إجراءات التعيين.</div>
+            </div>
+
+            <form id="employeeRequestForm" novalidate>
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="fullName" class="form-label">الاسم الكامل <span class="text-danger">*</span></label>
+                  <input type="text" id="fullName" name="fullName" class="form-control" required maxlength="120" autocomplete="name" placeholder="أدخل الاسم الكامل">
+                </div>
+                <div class="col-md-6">
+                  <label for="nationality" class="form-label">الجنسية <span class="text-danger">*</span></label>
+                  <input type="text" id="nationality" name="nationality" class="form-control" value="عراقي" required maxlength="60">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                  <label for="nationalId" class="form-label">رقم الهوية / البطاقة الوطنية</label>
+                  <input type="text" id="nationalId" name="nationalId" class="form-control" maxlength="40" inputmode="numeric" autocomplete="off" placeholder="أدخل رقم الهوية">
+                </div>
+                <div class="col-md-4">
+                  <label for="address" class="form-label">العنوان</label>
+                  <input type="text" id="address" name="address" class="form-control" maxlength="180" autocomplete="street-address" placeholder="أدخل العنوان">
+                </div>
+                <div class="col-md-4">
+                  <label for="dob" class="form-label">تاريخ الميلاد <span class="text-danger">*</span></label>
+                  <input type="date" id="dob" name="dob" class="form-control" required autocomplete="bday">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="phoneNumber" class="form-label">رقم الهاتف</label>
+                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" maxlength="30" inputmode="tel" autocomplete="tel" placeholder="أدخل رقم الهاتف">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="emerg1Name" class="form-label">طوارئ 1 (الاسم وصلة القرابة)</label>
+                  <input type="text" id="emerg1Name" name="emerg1Name" class="form-control" maxlength="120" placeholder="مثال: الأخ (نوزاد)">
+                </div>
+                <div class="col-md-6">
+                  <label for="emerg1Phone" class="form-label">رقم هاتف طوارئ 1</label>
+                  <input type="tel" id="emerg1Phone" name="emerg1Phone" class="form-control" maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="emerg2Name" class="form-label">طوارئ 2 (الاسم وصلة القرابة)</label>
+                  <input type="text" id="emerg2Name" name="emerg2Name" class="form-control" maxlength="120" placeholder="مثال: الأخ (ازاد)">
+                </div>
+                <div class="col-md-6">
+                  <label for="emerg2Phone" class="form-label">رقم هاتف طوارئ 2</label>
+                  <input type="tel" id="emerg2Phone" name="emerg2Phone" class="form-control" maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" id="submitBtn" class="btn btn-custom btn-lg">
+                  <i class="fa-solid fa-paper-plane me-2"></i> إرسال البيانات
+                </button>
+                <div id="formStatus" class="status-box mt-3 small" role="status" aria-live="polite"></div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+    // Replace these values with the Firebase web app config from Project settings > Your apps.
+    const firebaseConfig = {
+      apiKey: "AIzaSyB3HRMRXP2UYrnT-UOqreZy1HHcPyH3AkU",
+      authDomain: "wella-employee-intake.firebaseapp.com",
+      projectId: "wella-employee-intake",
+      storageBucket: "wella-employee-intake.firebasestorage.app",
+      messagingSenderId: "559967213413",
+      appId: "1:559967213413:web:bfc797e8bf7081a2a9338c",
+      measurementId: "G-NJ0GJQXCK0"
+    };
+
+    const configReady = !Object.values(firebaseConfig).some((value) =>
+      !value || value.startsWith("PASTE_") || value.includes("YOUR_PROJECT_ID")
+    );
+    const form = document.getElementById("employeeRequestForm");
+    const submitButton = document.getElementById("submitBtn");
+    const statusBox = document.getElementById("formStatus");
+    let db = null;
+
+    if (configReady) {
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+      } catch (error) {
+        console.error("Firebase initialization failed.", error);
+      }
+    } else {
+      statusBox.textContent = "سيتم تفعيل الإرسال بعد إعداد اتصال Firebase.";
+      statusBox.classList.add("text-muted");
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusBox.className = "status-box mt-3 small";
+
+      if (!form.reportValidity()) return;
+      if (!db) {
+        statusBox.textContent = "الاتصال بقاعدة البيانات غير مهيأ بعد. يرجى التواصل مع الإدارة.";
+        statusBox.classList.add("text-danger");
+        return;
+      }
+
+      const employee = {
+        fullName: document.getElementById("fullName").value.trim(),
+        nationality: document.getElementById("nationality").value.trim(),
+        nationalId: document.getElementById("nationalId").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        dob: document.getElementById("dob").value,
+        phoneNumber: document.getElementById("phoneNumber").value.trim(),
+        emerg1Name: document.getElementById("emerg1Name").value.trim(),
+        emerg1Phone: document.getElementById("emerg1Phone").value.trim(),
+        emerg2Name: document.getElementById("emerg2Name").value.trim(),
+        emerg2Phone: document.getElementById("emerg2Phone").value.trim()
+      };
+
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> جارٍ إرسال البيانات...';
+      statusBox.textContent = "";
+
+      try {
+        await addDoc(collection(db, "employeeRequests"), {
+          schemaVersion: 1,
+          status: "pending",
+          submittedAt: serverTimestamp(),
+          employee
+        });
+        form.reset();
+        document.getElementById("nationality").value = "عراقي";
+        window.location.href = "success.html";
+      } catch (error) {
+        console.error("Employee request submission failed.", error);
+        statusBox.textContent = "تعذر إرسال البيانات الآن. تحقق من اتصال الإنترنت وحاول مرة أخرى.";
+        statusBox.classList.add("text-danger");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> إرسال البيانات';
+      }
+    });
+  </script>
+</body>
+</html>
