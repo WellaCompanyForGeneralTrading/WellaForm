@@ -84,6 +84,13 @@
       border-radius: 10px;
       padding: 16px 18px;
     }
+    .document-upload-box {
+      background: #fdfbf7;
+      border: 1px dashed var(--wella-blue);
+      border-radius: 9px;
+      padding: 15px;
+      height: 100%;
+    }
     .status-box { min-height: 24px; }
     @media (max-width: 575.98px) {
       .wella-header .container { gap: 12px; }
@@ -134,12 +141,12 @@
 
               <div class="row g-3 mb-3">
                 <div class="col-md-4">
-                  <label for="nationalId" class="form-label">رقم الهوية / البطاقة الوطنية</label>
-                  <input type="text" id="nationalId" name="nationalId" class="form-control" maxlength="40" inputmode="numeric" autocomplete="off" placeholder="أدخل رقم الهوية">
+                  <label for="nationalId" class="form-label">رقم الهوية / البطاقة الوطنية <span class="text-danger">*</span></label>
+                  <input type="text" id="nationalId" name="nationalId" class="form-control" required maxlength="40" inputmode="numeric" autocomplete="off" placeholder="أدخل رقم الهوية">
                 </div>
                 <div class="col-md-4">
-                  <label for="address" class="form-label">العنوان</label>
-                  <input type="text" id="address" name="address" class="form-control" maxlength="180" autocomplete="street-address" placeholder="أدخل العنوان">
+                  <label for="address" class="form-label">العنوان <span class="text-danger">*</span></label>
+                  <input type="text" id="address" name="address" class="form-control" required maxlength="180" autocomplete="street-address" placeholder="أدخل العنوان">
                 </div>
                 <div class="col-md-4">
                   <label for="dob" class="form-label">تاريخ الميلاد <span class="text-danger">*</span></label>
@@ -149,30 +156,61 @@
 
               <div class="row g-3 mb-3">
                 <div class="col-md-6">
-                  <label for="phoneNumber" class="form-label">رقم الهاتف</label>
-                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" maxlength="30" inputmode="tel" autocomplete="tel" placeholder="أدخل رقم الهاتف">
+                  <label for="phoneNumber" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
+                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required maxlength="30" inputmode="tel" autocomplete="tel" placeholder="أدخل رقم الهاتف">
                 </div>
               </div>
 
               <div class="row g-3 mb-3">
                 <div class="col-md-6">
-                  <label for="emerg1Name" class="form-label">طوارئ 1 (الاسم وصلة القرابة)</label>
-                  <input type="text" id="emerg1Name" name="emerg1Name" class="form-control" maxlength="120" placeholder="مثال: الأخ (نوزاد)">
+                  <label for="emerg1Name" class="form-label">طوارئ 1 (الاسم وصلة القرابة) <span class="text-danger">*</span></label>
+                  <input type="text" id="emerg1Name" name="emerg1Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (نوزاد)">
                 </div>
                 <div class="col-md-6">
-                  <label for="emerg1Phone" class="form-label">رقم هاتف طوارئ 1</label>
-                  <input type="tel" id="emerg1Phone" name="emerg1Phone" class="form-control" maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                  <label for="emerg1Phone" class="form-label">رقم هاتف طوارئ 1 <span class="text-danger">*</span></label>
+                  <input type="tel" id="emerg1Phone" name="emerg1Phone" class="form-control" required maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
                 </div>
               </div>
 
               <div class="row g-3 mb-4">
                 <div class="col-md-6">
-                  <label for="emerg2Name" class="form-label">طوارئ 2 (الاسم وصلة القرابة)</label>
-                  <input type="text" id="emerg2Name" name="emerg2Name" class="form-control" maxlength="120" placeholder="مثال: الأخ (ازاد)">
+                  <label for="emerg2Name" class="form-label">طوارئ 2 (الاسم وصلة القرابة) <span class="text-danger">*</span></label>
+                  <input type="text" id="emerg2Name" name="emerg2Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (ازاد)">
                 </div>
                 <div class="col-md-6">
-                  <label for="emerg2Phone" class="form-label">رقم هاتف طوارئ 2</label>
-                  <input type="tel" id="emerg2Phone" name="emerg2Phone" class="form-control" maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                  <label for="emerg2Phone" class="form-label">رقم هاتف طوارئ 2 <span class="text-danger">*</span></label>
+                  <input type="tel" id="emerg2Phone" name="emerg2Phone" class="form-control" required maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="nationalityFrontImage" class="form-label">صورة الجنسية - الوجه الأمامي <span class="text-danger">*</span></label>
+                    <input type="file" id="nationalityFrontImage" class="form-control" accept="image/jpeg,image/png,image/webp" required>
+                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="nationalityBackImage" class="form-label">صورة الجنسية - الوجه الخلفي <span class="text-danger">*</span></label>
+                    <input type="file" id="nationalityBackImage" class="form-control" accept="image/jpeg,image/png,image/webp" required>
+                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="graduationCertificate" class="form-label">شهادة التخرج أو تأييد شهادة تخرج (اختياري)</label>
+                    <input type="file" id="graduationCertificate" class="form-control" accept="image/jpeg,image/png,image/webp">
+                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="otherCertificates" class="form-label">شهادات أخرى (اختياري)</label>
+                    <input type="file" id="otherCertificates" class="form-control" accept="image/jpeg,image/png,image/webp" multiple>
+                    <div class="form-text">يمكن اختيار حتى 5 صور، بحد أقصى 5 ميغابايت لكل صورة.</div>
+                  </div>
                 </div>
               </div>
 
@@ -191,7 +229,8 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+    import { getFirestore, collection, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-storage.js";
 
     // Replace these values with the Firebase web app config from Project settings > Your apps.
     const firebaseConfig = {
@@ -211,11 +250,13 @@
     const submitButton = document.getElementById("submitBtn");
     const statusBox = document.getElementById("formStatus");
     let db = null;
+    let storage = null;
 
     if (configReady) {
       try {
         const app = initializeApp(firebaseConfig);
         db = getFirestore(app);
+        storage = getStorage(app);
       } catch (error) {
         console.error("Firebase initialization failed.", error);
       }
@@ -224,13 +265,104 @@
       statusBox.classList.add("text-muted");
     }
 
+    const maxFileSize = 5 * 1024 * 1024;
+    const allowedImageTypes = ["image/jpeg", "image/png", "image/webp"];
+    const allowedCertificateTypes = allowedImageTypes;
+
+    function arabicLabel(input) {
+      const label = form.querySelector(`label[for="${input.id}"]`);
+      return label ? label.textContent.replace(/\*/g, "").replace(/\s+/g, " ").trim() : input.name;
+    }
+
+    function validateForm() {
+      const requiredInputs = [...form.querySelectorAll("[required]")];
+      const missing = requiredInputs.filter((input) => {
+        if (input.type === "file") return !input.files || input.files.length === 0;
+        return !String(input.value || "").trim();
+      });
+
+      if (missing.length) {
+        statusBox.textContent = missing.length === 1
+          ? `يرجى تعبئة الحقل التالي: ${arabicLabel(missing[0])}`
+          : `يرجى تعبئة الحقول التالية: ${missing.map(arabicLabel).join("، ")}`;
+        statusBox.classList.add("text-danger", "fw-semibold");
+        missing[0].focus();
+        return false;
+      }
+
+      const fileInputs = [
+        { id: "nationalityFrontImage", types: allowedImageTypes },
+        { id: "nationalityBackImage", types: allowedImageTypes },
+        { id: "graduationCertificate", types: allowedCertificateTypes },
+        { id: "otherCertificates", types: allowedCertificateTypes, multiple: true }
+      ];
+      for (const config of fileInputs) {
+        const input = document.getElementById(config.id);
+        const files = [...(input.files || [])];
+        if (config.multiple && files.length > 5) {
+          statusBox.textContent = "يمكن إرفاق خمسة ملفات كحد أقصى في حقل شهادات أخرى.";
+          statusBox.classList.add("text-danger", "fw-semibold");
+          input.focus();
+          return false;
+        }
+        for (const file of files) {
+          if (file.size > maxFileSize) {
+            statusBox.textContent = `الملف في حقل «${arabicLabel(input)}» يتجاوز الحد الأقصى وهو 5 ميغابايت.`;
+            statusBox.classList.add("text-danger", "fw-semibold");
+            input.focus();
+            return false;
+          }
+          if (!config.types.includes(file.type)) {
+            statusBox.textContent = `نوع الملف في حقل «${arabicLabel(input)}» غير مدعوم. استخدم صورة JPG أو PNG أو WEBP.`;
+            statusBox.classList.add("text-danger", "fw-semibold");
+            input.focus();
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function fileExtension(file) {
+      return ({
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp"
+      })[file.type];
+    }
+
+    async function uploadDocument(requestId, prefix, file, index = 0, uploadedRefs = []) {
+      if (!file) return "";
+      const objectName = `${prefix}_${Date.now()}_${index}.${fileExtension(file)}`;
+      const objectRef = ref(storage, `employeeRequests/${requestId}/${objectName}`);
+      await uploadBytes(objectRef, file, { contentType: file.type });
+      uploadedRefs.push(objectRef);
+      return getDownloadURL(objectRef);
+    }
+
+    function getArabicSubmissionError(error) {
+      if (error?.code === "permission-denied") {
+        return "رفضت قواعد Firestore الطلب. حدّث القواعد لتسمح بحقل documents، ثم أعد المحاولة.";
+      }
+      if (error?.code === "storage/unauthorized") {
+        return "رفضت قواعد Firebase Storage رفع الصور. حدّث قواعد Storage ثم أعد المحاولة.";
+      }
+      if (error?.code === "storage/no-bucket" || error?.code === "storage/bucket-not-found") {
+        return "مساحة Firebase Storage غير مهيأة. أنشئ مساحة التخزين في Firebase Console وتأكد من اسم الحاوية.";
+      }
+      if (error?.code?.startsWith("storage/")) {
+        return `تعذر رفع الصور إلى Firebase Storage (${error.code}). تحقق من إعداد Storage وقواعده.`;
+      }
+      return "تعذر إرسال البيانات. تحقق من قواعد Firestore وStorage واتصال الإنترنت، ثم حاول مرة أخرى.";
+    }
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       statusBox.className = "status-box mt-3 small";
 
-      if (!form.reportValidity()) return;
-      if (!db) {
-        statusBox.textContent = "الاتصال بقاعدة البيانات غير مهيأ بعد. يرجى التواصل مع الإدارة.";
+      if (!validateForm()) return;
+      if (!db || !storage) {
+        statusBox.textContent = "الاتصال بقاعدة البيانات أو مساحة الملفات غير مهيأ. يرجى التواصل مع الإدارة.";
         statusBox.classList.add("text-danger");
         return;
       }
@@ -251,20 +383,39 @@
       submitButton.disabled = true;
       submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> جارٍ إرسال البيانات...';
       statusBox.textContent = "";
+      const uploadedRefs = [];
 
       try {
-        await addDoc(collection(db, "employeeRequests"), {
+        const requestRef = doc(collection(db, "employeeRequests"));
+        const frontImageUrl = await uploadDocument(requestRef.id, "nationality-front", document.getElementById("nationalityFrontImage").files[0], 0, uploadedRefs);
+        const backImageUrl = await uploadDocument(requestRef.id, "nationality-back", document.getElementById("nationalityBackImage").files[0], 0, uploadedRefs);
+        const graduationFile = document.getElementById("graduationCertificate").files[0];
+        const graduationCertificateUrl = await uploadDocument(requestRef.id, "graduation", graduationFile, 0, uploadedRefs);
+        const otherFiles = [...document.getElementById("otherCertificates").files];
+        const otherCertificateUrls = [];
+        for (let index = 0; index < otherFiles.length; index++) {
+          otherCertificateUrls.push(await uploadDocument(requestRef.id, "other", otherFiles[index], index, uploadedRefs));
+        }
+
+        await setDoc(requestRef, {
           schemaVersion: 1,
           status: "pending",
           submittedAt: serverTimestamp(),
-          employee
+          employee,
+          documents: {
+            nationalityFrontUrl: frontImageUrl,
+            nationalityBackUrl: backImageUrl,
+            graduationCertificateUrl,
+            otherCertificateUrls
+          }
         });
         form.reset();
         document.getElementById("nationality").value = "عراقي";
         window.location.href = "success.html";
       } catch (error) {
         console.error("Employee request submission failed.", error);
-        statusBox.textContent = "تعذر إرسال البيانات الآن. تحقق من اتصال الإنترنت وحاول مرة أخرى.";
+        await Promise.allSettled(uploadedRefs.map((objectRef) => deleteObject(objectRef)));
+        statusBox.textContent = getArabicSubmissionError(error);
         statusBox.classList.add("text-danger");
       } finally {
         submitButton.disabled = false;
