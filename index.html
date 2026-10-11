@@ -161,8 +161,39 @@
                 </div>
               </div>
 
-              <div class="row g-3 mb-3">
+              <div class="row g-3 mb-4">
                 <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="nationalityFrontImage" class="form-label">صورة الجنسية - الوجه الأمامي <span class="text-danger">*</span></label>
+                    <input type="file" id="nationalityFrontImage" class="form-control" accept="image/jpeg,image/png,image/webp" required>
+                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="nationalityBackImage" class="form-label">صورة الجنسية - الوجه الخلفي <span class="text-danger">*</span></label>
+                    <input type="file" id="nationalityBackImage" class="form-control" accept="image/jpeg,image/png,image/webp" required>
+                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="graduationCertificate" class="form-label">شهادة التخرج أو تأييد شهادة تخرج <span class="text-danger">(اذا لم تكن خريجًا، يمكنك تخطي هذا الحقل. أما إذا كنت خريجًا، فيجب إرفاق الشهادة أو التأييد.)</span></label>
+                    <input type="file" id="graduationCertificate" class="form-control" accept="image/jpeg,image/png,image/webp">
+                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="document-upload-box">
+                    <label for="otherCertificates" class="form-label">شهادات أخرى (اختياري)</label>
+                    <input type="file" id="otherCertificates" class="form-control" accept="image/jpeg,image/png,image/webp" multiple>
+                    <div class="form-text">يمكن اختيار حتى 5 صور، بحد أقصى 5 ميغابايت لكل صورة.</div>
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label><span class="text-danger">يجب ان تكون من صلة القرابة من الدرجة الأولة</span></label>
                   <label for="emerg1Name" class="form-label">طوارئ 1 (الاسم وصلة القرابة) <span class="text-danger">*</span></label>
                   <input type="text" id="emerg1Name" name="emerg1Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (نوزاد)">
                 </div>
@@ -183,35 +214,6 @@
                 </div>
               </div>
 
-              <div class="row g-3 mb-4">
-                <div class="col-md-6">
-                  <div class="document-upload-box">
-                    <label for="nationalityFrontImage" class="form-label">صورة الجنسية - الوجه الأمامي <span class="text-danger">*</span></label>
-                    <input type="file" id="nationalityFrontImage" class="form-control" accept="image/jpeg,image/png,image/webp" required>
-                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="document-upload-box">
-                    <label for="nationalityBackImage" class="form-label">صورة الجنسية - الوجه الخلفي <span class="text-danger">*</span></label>
-                    <input type="file" id="nationalityBackImage" class="form-control" accept="image/jpeg,image/png,image/webp" required>
-                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="document-upload-box">
-                    <label for="graduationCertificate" class="form-label">شهادة التخرج أو تأييد شهادة تخرج (اختياري)</label>
-                    <input type="file" id="graduationCertificate" class="form-control" accept="image/jpeg,image/png,image/webp">
-                    <div class="form-text">صورة JPG أو PNG أو WEBP، الحد الأقصى 5 ميغابايت.</div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="document-upload-box">
-                    <label for="otherCertificates" class="form-label">شهادات أخرى (اختياري)</label>
-                    <input type="file" id="otherCertificates" class="form-control" accept="image/jpeg,image/png,image/webp" multiple>
-                    <div class="form-text">يمكن اختيار حتى 5 صور، بحد أقصى 5 ميغابايت لكل صورة.</div>
-                  </div>
-                </div>
               </div>
 
               <div class="text-center">
