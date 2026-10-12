@@ -92,6 +92,36 @@
       height: 100%;
     }
     .status-box { min-height: 24px; }
+    .upload-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(251,248,242,.96);
+      text-align: center;
+    }
+    .upload-overlay.is-visible { display: flex; }
+    .upload-panel {
+      width: min(100%, 420px);
+      padding: 32px 24px;
+      background: #fff;
+      border: 1px solid var(--wella-border);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(23,51,89,.12);
+    }
+    .upload-spinner {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 18px;
+      border: 5px solid #e5e9ef;
+      border-top-color: var(--wella-blue);
+      border-radius: 50%;
+      animation: wella-spin .8s linear infinite;
+    }
+    @keyframes wella-spin { to { transform: rotate(360deg); } }
     @media (max-width: 575.98px) {
       .wella-header .container { gap: 12px; }
       .wella-title-text h2 { font-size: .95rem; }
@@ -149,19 +179,52 @@
                   <input type="text" id="address" name="address" class="form-control" required maxlength="180" autocomplete="street-address" placeholder="أدخل العنوان">
                 </div>
                 <div class="col-md-4">
-                  <label for="dob" class="form-label">تاريخ الميلاد <span class="text-danger">*</span></label>
-                  <input type="date" id="dob" name="dob" class="form-control" required autocomplete="bday">
+                  <label for="nearestPoint" class="form-label">أقرب نقطة دالة <span class="text-danger">*</span></label>
+                  <input type="text" id="nearestPoint" name="nearestPoint" class="form-control" required maxlength="180" placeholder="مثال: قرب ...">
                 </div>
               </div>
 
               <div class="row g-3 mb-3">
+                <div class="col-md-3">
+                  <label for="dob" class="form-label">تاريخ الميلاد <span class="text-danger">*</span></label>
+                  <input type="date" id="dob" name="dob" class="form-control" required autocomplete="bday">
+                </div>
+                <div class="col-md-3">
+                  <label for="maritalStatus" class="form-label">الحالة الاجتماعية <span class="text-danger">*</span></label>
+                  <select id="maritalStatus" name="maritalStatus" class="form-control" required>
+                    <option value="" selected disabled>اختر الحالة الاجتماعية</option>
+                    <option value="أعزب">أعزب</option>
+                    <option value="متزوج">متزوج</option>
+                  </select>
+                  
+                </div>
                 <div class="col-md-6">
                   <label for="phoneNumber" class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
                   <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required maxlength="30" inputmode="tel" autocomplete="tel" placeholder="أدخل رقم الهاتف">
                 </div>
               </div>
-              <br/>
-              <br/>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                  <label for="university" class="form-label">الجامعة أو المعهد</label>
+                  <input type="text" id="university" name="university" class="form-control" maxlength="160" placeholder="مثال: جامعة دهوك">
+                </div>
+                <div class="col-md-4">
+                  <label for="degree" class="form-label">الشهادة</label>
+                  <select id="degree" name="degree" class="form-control">
+                    <option value="بدون شهادة" selected>بدون شهادة</option>
+                    <option value="دبلوم">دبلوم</option>
+                    <option value="بكالوريوس">بكالوريوس</option>
+                    <option value="ماجستير">ماجستير</option>
+                    <option value="دكتوراه">دكتوراه</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="specialization" class="form-label">الاختصاص</label>
+                  <input type="text" id="specialization" name="specialization" class="form-control" maxlength="160" placeholder="مثال: إدارة أعمال">
+                </div>
+              </div>
+
               <div class="row g-3 mb-4">
                 <div class="col-md-6">
                   <div class="document-upload-box">
@@ -193,29 +256,26 @@
                 </div>
 
                 <div class="row g-3 mb-3">
-                <div class="col-md-6">
-                  <label><span class="text-danger">يجب ان تكون من صلة قرابة من الدرجة الأولة</span></label>
-                  <label for="emerg1Name" class="form-label">طوارئ 1 (الاسم وصلة القرابة) <span class="text-danger">*</span></label>
-                  <input type="text" id="emerg1Name" name="emerg1Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (نوزاد)">
+                  <div class="col-md-6">
+                    <label for="emerg1Name" class="form-label">طوارئ 1 (الاسم وصلة القرابة) <span class="text-danger">يجب ان تكون من صلة قرابة من الدرجة الأولة</span></label>
+                    <input type="text" id="emerg1Name" name="emerg1Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (نوزاد)">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="emerg1Phone" class="form-label">رقم هاتف طوارئ 1 <span class="text-danger">*</span></label>
+                    <input type="tel" id="emerg1Phone" name="emerg1Phone" class="form-control" required maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <label for="emerg1Phone" class="form-label">رقم هاتف طوارئ 1 <span class="text-danger">*</span></label>
-                  <input type="tel" id="emerg1Phone" name="emerg1Phone" class="form-control" required maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
-                </div>
-              </div>
-              
-              <div class="row g-3 mb-4">
-                <div class="col-md-6">
-                  <label><span class="text-danger">يجب ان تكون من صلة قرابة من الدرجة الأولة</span></label>
-                  <label for="emerg2Name" class="form-label">طوارئ 2 (الاسم وصلة القرابة) <span class="text-danger">*</span></label>
-                  <input type="text" id="emerg2Name" name="emerg2Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (ازاد)">
-                </div>
-                <div class="col-md-6">
-                  <label for="emerg2Phone" class="form-label">رقم هاتف طوارئ 2 <span class="text-danger">*</span></label>
-                  <input type="tel" id="emerg2Phone" name="emerg2Phone" class="form-control" required maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
-                </div>
-              </div>
 
+                <div class="row g-3 mb-4">
+                  <div class="col-md-6">
+                    <label for="emerg2Name" class="form-label">طوارئ 2 (الاسم وصلة القرابة) <span class="text-danger">يجب ان تكون من صلة قرابة من الدرجة الأولة</span></label>
+                    <input type="text" id="emerg2Name" name="emerg2Name" class="form-control" required maxlength="120" placeholder="مثال: الأخ (ازاد)">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="emerg2Phone" class="form-label">رقم هاتف طوارئ 2 <span class="text-danger">*</span></label>
+                    <input type="tel" id="emerg2Phone" name="emerg2Phone" class="form-control" required maxlength="30" inputmode="tel" placeholder="أدخل رقم الهاتف">
+                  </div>
+                </div>
               </div>
 
               <div class="text-center">
@@ -231,12 +291,19 @@
     </div>
   </main>
 
+  <div id="uploadOverlay" class="upload-overlay" role="status" aria-live="polite" aria-hidden="true">
+    <div class="upload-panel">
+      <div class="upload-spinner" aria-hidden="true"></div>
+      <h4 class="fw-bold mb-2" style="color:var(--wella-blue)">جارٍ إرسال طلبك</h4>
+      <p class="mb-0 text-muted">يتم رفع الصور وحفظ البيانات. يرجى إبقاء هذه الصفحة مفتوحة.</p>
+    </div>
+  </div>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
     import { getFirestore, collection, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
     import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-storage.js";
 
-    // Replace these values with the Firebase web app config from Project settings > Your apps.
     const firebaseConfig = {
       apiKey: "AIzaSyB3HRMRXP2UYrnT-UOqreZy1HHcPyH3AkU",
       authDomain: "wella-employee-intake.firebaseapp.com",
@@ -253,6 +320,7 @@
     const form = document.getElementById("employeeRequestForm");
     const submitButton = document.getElementById("submitBtn");
     const statusBox = document.getElementById("formStatus");
+    const uploadOverlay = document.getElementById("uploadOverlay");
     let db = null;
     let storage = null;
 
@@ -346,7 +414,7 @@
 
     function getArabicSubmissionError(error) {
       if (error?.code === "permission-denied") {
-        return "رفضت قواعد Firestore الطلب. حدّث القواعد لتسمح بحقل documents، ثم أعد المحاولة.";
+        return "رفضت قواعد Firestore الطلب. حدّث القواعد لتسمح بالحقول الجديدة، ثم أعد المحاولة.";
       }
       if (error?.code === "storage/unauthorized") {
         return "رفضت قواعد Firebase Storage رفع الصور. حدّث قواعد Storage ثم أعد المحاولة.";
@@ -377,7 +445,12 @@
         nationalId: document.getElementById("nationalId").value.trim(),
         address: document.getElementById("address").value.trim(),
         dob: document.getElementById("dob").value,
+        maritalStatus: document.getElementById("maritalStatus").value,
+        nearestPoint: document.getElementById("nearestPoint").value.trim(),
         phoneNumber: document.getElementById("phoneNumber").value.trim(),
+        university: document.getElementById("university").value.trim(),
+        degree: document.getElementById("degree").value,
+        specialization: document.getElementById("specialization").value.trim(),
         emerg1Name: document.getElementById("emerg1Name").value.trim(),
         emerg1Phone: document.getElementById("emerg1Phone").value.trim(),
         emerg2Name: document.getElementById("emerg2Name").value.trim(),
@@ -386,20 +459,32 @@
 
       submitButton.disabled = true;
       submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> جارٍ إرسال البيانات...';
+      uploadOverlay.classList.add("is-visible");
+      uploadOverlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
       statusBox.textContent = "";
       const uploadedRefs = [];
 
       try {
         const requestRef = doc(collection(db, "employeeRequests"));
-        const frontImageUrl = await uploadDocument(requestRef.id, "nationality-front", document.getElementById("nationalityFrontImage").files[0], 0, uploadedRefs);
-        const backImageUrl = await uploadDocument(requestRef.id, "nationality-back", document.getElementById("nationalityBackImage").files[0], 0, uploadedRefs);
         const graduationFile = document.getElementById("graduationCertificate").files[0];
-        const graduationCertificateUrl = await uploadDocument(requestRef.id, "graduation", graduationFile, 0, uploadedRefs);
         const otherFiles = [...document.getElementById("otherCertificates").files];
-        const otherCertificateUrls = [];
-        for (let index = 0; index < otherFiles.length; index++) {
-          otherCertificateUrls.push(await uploadDocument(requestRef.id, "other", otherFiles[index], index, uploadedRefs));
-        }
+
+        const uploads = await Promise.allSettled([
+          uploadDocument(requestRef.id, "nationality-front", document.getElementById("nationalityFrontImage").files[0], 0, uploadedRefs),
+          uploadDocument(requestRef.id, "nationality-back", document.getElementById("nationalityBackImage").files[0], 0, uploadedRefs),
+          uploadDocument(requestRef.id, "graduation", graduationFile, 0, uploadedRefs),
+          ...otherFiles.map((file, index) => uploadDocument(requestRef.id, "other", file, index, uploadedRefs))
+        ]);
+
+        const failedUpload = uploads.find(result => result.status === "rejected");
+        if (failedUpload) throw failedUpload.reason;
+
+        const uploadUrls = uploads.map(result => result.value);
+        const frontImageUrl = uploadUrls[0];
+        const backImageUrl = uploadUrls[1];
+        const graduationCertificateUrl = uploadUrls[2];
+        const otherCertificateUrls = uploadUrls.slice(3);
 
         await setDoc(requestRef, {
           schemaVersion: 1,
@@ -413,6 +498,7 @@
             otherCertificateUrls
           }
         });
+
         form.reset();
         document.getElementById("nationality").value = "عراقي";
         window.location.href = "success.html";
@@ -424,6 +510,9 @@
       } finally {
         submitButton.disabled = false;
         submitButton.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> إرسال البيانات';
+        uploadOverlay.classList.remove("is-visible");
+        uploadOverlay.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
       }
     });
   </script>
